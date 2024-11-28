@@ -5,31 +5,19 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Clonar el repositorio
-                git 'https://github.com/PamTommasini/hola-mundo-cicd.git'
+                git 'https://github.com/usuario/hello-world-python.git'
             }
         }
-        stage('Install') {
+        stage('Build Docker Images') {
             steps {
-                // Instalar dependencias localmente (opcional, útil para testear sin Docker)
-                sh 'pip install -r requirements.txt'
+                // Construir los contenedores con docker-compose
+                sh 'docker-compose build'
             }
         }
-        stage('Test') {
+        stage('Run Services') {
             steps {
-                // Ejecutar tests
-                sh 'python -m unittest discover tests'
-            }
-        }
-        stage('Build Docker Image') {
-            steps {
-                // Construir la imagen Docker
-                sh 'docker build -t hello-world-python .'
-            }
-        }
-        stage('Run Docker Container') {
-            steps {
-                // Ejecutar la imagen en un contenedor
-                sh 'docker run --rm hello-world-python'
+                // Levantar servicios
+                sh 'docker-compose up -d'
             }
         }
     }
@@ -39,7 +27,7 @@ pipeline {
             echo 'Pipeline completada.'
         }
         success {
-            echo 'Éxito: Todas las etapas completadas.'
+            echo 'Éxito: Aplicación desplegada con NGINX.'
         }
         failure {
             echo 'Fallo: Revisa la configuración o los logs.'
