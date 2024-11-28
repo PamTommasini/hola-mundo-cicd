@@ -1,7 +1,0 @@
-ejemplo-cicd/
-├── Dockerfile
-├── Jenkinsfile
-├── app.py
-├── requirements.txt
-└── tests/
-    └── test_app.py
