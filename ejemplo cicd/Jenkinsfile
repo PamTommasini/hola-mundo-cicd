@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clonar el repositorio
+                git 'https://github.com/usuario/hello-world-python.git'
+            }
+        }
+        stage('Install') {
+            steps {
+                // Instalar dependencias
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Ejecutar tests
+                sh 'python -m unittest discover tests'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Simular un despliegue (puedes reemplazar con tu propio comando)
+                echo 'Desplegando aplicación...'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline completada.'
+        }
+        success {
+            echo 'Éxito: Todas las etapas completadas.'
+        }
+        failure {
+            echo 'Fallo: Revisa la configuración o los logs.'
+        }
+    }
+}
