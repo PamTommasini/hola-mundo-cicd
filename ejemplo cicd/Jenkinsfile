@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Clonar el repositorio
-                git 'https://github.com/usuario/hello-world-python.git'
+                git 'https://github.com/PamTommasini/hola-mundo-cicd.git'
             }
         }
         stage('Install') {
