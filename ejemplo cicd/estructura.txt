@@ -1,6 +1,0 @@
-ejemplo cicd/
-├── Jenkinsfile
-├── app.py
-├── requirements.txt
-└── tests/
-    └── test_app.py
